@@ -1,6 +1,7 @@
 import React from "react"
 import Layout from '../components/layout'
 import {graphql, useStaticQuery, Link} from 'gatsby'
+import styled from 'styled-components'
 
 const LocationsPage = ()=>{
     const data = useStaticQuery(graphql`
@@ -24,9 +25,9 @@ const LocationsPage = ()=>{
             {data.allContentfulCities.edges.map((edge) => {
                 return (
                 <li>
-                    <Link to={`/locations/${edge.node.slug}`}>
+                    <StyledLink to={`/locations/${edge.node.slug}`}>
                         <h3>{edge.node.cities}</h3>
-                    </Link>
+                    </StyledLink>
                 </li>
                 )
                
@@ -35,5 +36,10 @@ const LocationsPage = ()=>{
         </Layout>
     )
 }
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: grey;
+`
 
 export default LocationsPage
